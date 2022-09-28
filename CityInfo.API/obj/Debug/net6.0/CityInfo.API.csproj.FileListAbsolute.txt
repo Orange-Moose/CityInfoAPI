@@ -25,3 +25,4 @@ C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\
 C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\obj\Debug\net6.0\CityInfo.API.pdb
 C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\obj\Debug\net6.0\CityInfo.API.genruntimeconfig.cache
 C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\obj\Debug\net6.0\ref\CityInfo.API.dll
+C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\.NET cheatsheet.docx
