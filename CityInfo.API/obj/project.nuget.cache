@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "JRoJ2Vn3nyvg0n6rBsSc5lqWLaGpN7eem5I9T34Nau0yT+UFdnIxT9tD3DEpzyan59TwNvMRgIQwYt+dm/8h9Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\OrangeMoose\\Documents\\sites\\.NET projects\\Pluralsight Courses\\CityInfo\\CityInfo.API\\CityInfo.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\OrangeMoose\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\OrangeMoose\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\OrangeMoose\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\OrangeMoose\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
