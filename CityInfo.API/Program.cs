@@ -12,11 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(options =>
 {
     options.ReturnHttpNotAcceptable = true; // Prevents returning response in default format (application.json) and gives 406 status instead
-}).AddXmlDataContractSerializerFormatters(); // Allows response in application.xml through Request Headers Accept: application.xml
+}).AddNewtonsoftJson() // configures input and output formatters and replaces default formatters form .NET
+.AddXmlDataContractSerializerFormatters(); // Allows response in application.xml through Request Headers Accept: application.xml
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<FileExtensionContentTypeProvider>(); // allows content type injections in other parts of application
+builder.Services.AddSingleton<FileExtensionContentTypeProvider>(); // allows to inject a file extension toncent type provider in other parts of application
 
 var app = builder.Build();
 

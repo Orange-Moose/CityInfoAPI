@@ -26,3 +26,7 @@ C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\
 C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\obj\Debug\net6.0\CityInfo.API.genruntimeconfig.cache
 C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\obj\Debug\net6.0\ref\CityInfo.API.dll
 C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\.NET cheatsheet.docx
+C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
