@@ -4,6 +4,9 @@ namespace CityInfo.API
 {
     public class CitiesDataStore
     {
+        public List<CityDto> Cities { get; set; } // placeholder for dummy data
+        
+        //public static CitiesDataStore Current { get; } = new CitiesDataStore(); // return populated dummy data by calling CitiesDataStore.Current
         public CitiesDataStore()
         {
             //Init dummy data
@@ -47,8 +50,5 @@ namespace CityInfo.API
                 }
             };
         }
-        public List<CityDto> Cities { get; set; } // placeholder for dummy data
-
-        public static CitiesDataStore Current { get; } = new CitiesDataStore(); // return populated dummy data by calling CitiesDataStore.Current
     }
 }

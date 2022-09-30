@@ -7,10 +7,15 @@ namespace CityInfo.API.Controllers
     [Route("api/cities")] // default route for this controller
     public class CitiesController : ControllerBase // Asp.NET Core base class for MVC controllers
     {
+        private CitiesDataStore _citiesDataStore;
+        public CitiesController(CitiesDataStore citiesDataStore)
+        {
+            _citiesDataStore = citiesDataStore ?? throw new ArgumentNullException(nameof(CitiesDataStore));
+        }
         [HttpGet]
         public ActionResult<IEnumerable<CityDto>> GetCities()
         {
-            var cities = CitiesDataStore.Current.Cities;
+            var cities = _citiesDataStore.Cities;
 
             return Ok(cities);
         }
@@ -18,7 +23,7 @@ namespace CityInfo.API.Controllers
         [HttpGet("{id}")]
         public ActionResult<CityDto> GetCity(int id)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(x => x.Id == id);
+            var city = _citiesDataStore.Cities.FirstOrDefault(x => x.Id == id);
 
 
             if (city == null) return NotFound($"City with id: {id} was not found");
