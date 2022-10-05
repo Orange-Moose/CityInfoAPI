@@ -18,6 +18,9 @@ namespace CityInfo.API.Entities
         [MaxLength(50, ErrorMessage = "Maximum of 50 characters allowed")]
         public string Name { get; set; }
 
+        [MaxLength(150, ErrorMessage = "Maximum of 150 characters allowed")]
+        public string? Description { get; set; }
+
         [ForeignKey("CityId")]
         public City? City { get; set; } // for creating a relationship between City and Point of interest in a DB. It will automatically target parent class Id [Key]
 
