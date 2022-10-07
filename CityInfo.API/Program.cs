@@ -52,6 +52,12 @@ builder.Services.AddDbContext<CityInfoContext>(dbContextOptions => dbContextOpti
 
 
 
+//Register Repositories:
+// AddScoped lifetime refference to dependency is created once per request. 
+builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();  //to register the repository we pass the contract (interface) and the implementation (repo). 
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());// Mount automapper package. /Profiles folder contents used here
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

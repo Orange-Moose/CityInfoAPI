@@ -1,27 +1,24 @@
 ﻿using CityInfo.API.Entities;
 using CityInfo.API.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Runtime.Intrinsics.X86;
 
 namespace CityInfo.API.DbContexts
 {
     public class CityInfoContext: DbContext
     {
         // Registering DB connection via constructor
-        public CityInfoContext(DbContextOptions<CityInfoContext> options) : base(options) { } 
-        
-        
+        public CityInfoContext(DbContextOptions<CityInfoContext> options) : base(options) { }
+
+
+        // We use these DbSet properties to query and save instances
+        // The LINQ queries against the DbSet properties will be translated into queries against the underlying database
         public DbSet<City> Cities { get; set; } = null!; // null forgiving operator
         public DbSet<PointOfInterest> PointsOfInterest { get; set; } = null!; // null forgiving operator
 
-        /*
-        // Registering DB connection by overriding OnConfiguring() method
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("connectionstring");
-            base.OnConfiguring(optionsBuilder);
-        }
-        */
 
+        // Add some initial data on DB creation
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Seeding DB with initial City dummy data
@@ -68,6 +65,7 @@ namespace CityInfo.API.DbContexts
                         CityId = 3
                     }
                 );
+
             base.OnModelCreating(modelBuilder);
         }
     }

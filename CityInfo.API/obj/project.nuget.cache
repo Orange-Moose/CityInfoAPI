@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Q12j4zJslPjTN9NNMsg1Kc9gDgodprf3NjvfLYp2UUndjOW7DXsU12+r7NWnFWS7tXabe7WG1yGuKIKvAmrzyw==",
+  "dgSpecHash": "935G23Bdchr3KktNvuJvC6vxFxk+UcrJQJHRUh8fDFkuuZ/EipPRci/NWdgWcuzDKy8ssbPKCnyPrE+NgNaE2g==",
   "success": true,
   "projectFilePath": "C:\\Users\\OrangeMoose\\Documents\\sites\\.NET projects\\Pluralsight Courses\\CityInfo\\CityInfo.API\\CityInfo.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\OrangeMoose\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\OrangeMoose\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\OrangeMoose\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.9\\microsoft.aspnetcore.jsonpatch.6.0.9.nupkg.sha512",
     "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.9\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.9.nupkg.sha512",

@@ -19,11 +19,11 @@ namespace CityInfo.API.Entities
         public string Name { get; set; }
 
         [MaxLength(150, ErrorMessage = "Maximum of 150 characters allowed")]
-        public string? Description { get; set; }
+        public string? Description { get; set; } = "Not provided";
 
         [ForeignKey("CityId")]
         public City? City { get; set; } // for creating a relationship between City and Point of interest in a DB. It will automatically target parent class Id [Key]
 
-        public int CityId { get; set; } // define a foreign key for clarity
+        public int CityId { get; set; } // define a foreign key
     }
 }
