@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UEbiNRhrQNRlzz8VExjvv0aOfVo8ODPRyybqLoXvsLYz7mAW7dbY8FY+npMLHpp4y7Tg7yBLGCGsay+GDbgL5A==",
+  "dgSpecHash": "2Zhh3GY9epRqxAemv/eG8iqSHrbrc2P9KbvKJg1vTID3ZqpdAEl4oxUfzG0kK8aafOFwBAtYF2cJ1oF6vAc3Gw==",
   "success": true,
   "projectFilePath": "C:\\Users\\OrangeMoose\\Documents\\sites\\.NET projects\\Pluralsight Courses\\CityInfo\\CityInfo.API\\CityInfo.API.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.10\\microsoft.aspnetcore.authentication.jwtbearer.6.0.10.nupkg.sha512",
     "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.9\\microsoft.aspnetcore.jsonpatch.6.0.9.nupkg.sha512",
     "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.9\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.9.nupkg.sha512",
+    "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
     "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.9\\microsoft.data.sqlite.core.6.0.9.nupkg.sha512",
     "C:\\Users\\OrangeMoose\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.9\\microsoft.entityframeworkcore.6.0.9.nupkg.sha512",

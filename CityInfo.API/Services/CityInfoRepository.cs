@@ -47,7 +47,7 @@ namespace CityInfo.API.Services
 
             // CountAsync() is a database method that returns total amount of items in a given collection
             var totalItemCount = await collection.CountAsync();
-            var paginationMetadata = new PaginationMetadata(totalItemCount, pageNumber, pageSize);
+            var paginationMetadata = new PaginationMetadata(totalItemCount, pageSize, pageNumber);
 
 
             // Pagination

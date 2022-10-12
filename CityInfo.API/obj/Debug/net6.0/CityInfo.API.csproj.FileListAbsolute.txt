@@ -77,3 +77,5 @@ C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\
 C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.dll
+C:\Users\OrangeMoose\Documents\sites\.NET projects\Pluralsight Courses\CityInfo\CityInfo.API\bin\Debug\net6.0\CityInfo.API.xml

@@ -10,7 +10,9 @@ namespace CityInfo.API.Controllers
 {
     [ApiController]
     [Authorize]
-    [Route("api/cities")] // default route for this controller
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")] // you can set multiple versions if needed
+    [Route("api/v{version:apiVersion}/cities")] // default route for this controller
     public class CitiesController : ControllerBase // Asp.NET Core base class for MVC controllers
     {
         private readonly ICityInfoRepository _cityInfoRepository;
@@ -48,7 +50,20 @@ namespace CityInfo.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Get a city by id
+        /// </summary>
+        /// <param name="id"> The id of the city</param>
+        /// <param name="includePOIs">Option to include points of interest</param>
+        /// <returns>An IActionResult</returns>
+        /// <response code="200">Returns a requested city</response>
+        /// <response code="401">A valid token must be provided</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+
         public async Task<IActionResult> GetCity(int id, bool includePOIs = false)
         {
             var cityEntity = await _cityInfoRepository.GetCityAsync(id, includePOIs);

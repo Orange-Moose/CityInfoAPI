@@ -1,5 +1,6 @@
 ﻿namespace CityInfo.API.Models
 {
+
     public class CityWithoutPOIsDTO
     {
         public int Id { get; set; }

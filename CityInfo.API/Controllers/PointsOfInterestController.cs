@@ -11,9 +11,10 @@ using System.Xml.Linq;
 
 namespace CityInfo.API.Controllers
 {
-    [Route("api/cities/{cityId}/pointsofinterest")]
+    [Route("api/v{version:apiVersion}/cities/{cityId}/pointsofinterest")]
     [ApiController]
-    [Authorize(Policy = "MustBeFromVilnius")]
+    [Authorize(Policy = "MustBeFromVilnius")] // comes from Program.cs authorization policy
+    [ApiVersion("2.0")]
     public class PointsOfInterestController : ControllerBase // Asp.NET Core base class for MVC controllers
     {
         // Dependency injection (use interfaces, not instances)
@@ -36,6 +37,8 @@ namespace CityInfo.API.Controllers
         [HttpGet] // route template is not necessary as we defined {cityId} variable in a default route for this controller
         public async Task<ActionResult<IEnumerable<PointOfInterestDto>>> GetPointsOfInterest(int cityId)
         {
+            
+            // Restricting route for users that are not from their home city
 
             //Using signed-in user info => extract Value of city in User entity
             var userCity = User.Claims.FirstOrDefault(c => c.Type == "city")?.Value;

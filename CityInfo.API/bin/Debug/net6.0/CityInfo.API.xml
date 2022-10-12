@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CityInfo.API</name>
+    </assembly>
+    <members>
+        <member name="M:CityInfo.API.Controllers.CitiesController.GetCity(System.Int32,System.Boolean)">
+            <summary>
+            Get a city by id
+            </summary>
+            <param name="id"> The id of the city</param>
+            <param name="includePOIs">Option to include points of interest</param>
+            <returns>An IActionResult</returns>
+            <response code="200">Returns a requested city</response>
+            <response code="401">A valid token must be provided</response>
+        </member>
+        <member name="T:CityInfo.API.Models.PointOfInterestDto">
+            <summary>
+            A DTO for a single point of interest
+            </summary>
+        </member>
+        <member name="P:CityInfo.API.Models.PointOfInterestDto.Id">
+            <summary>
+            The id of the point of interest
+            </summary>
+        </member>
+        <member name="P:CityInfo.API.Models.PointOfInterestDto.Name">
+            <summary>
+            The name of the point of interest
+            </summary>
+        </member>
+        <member name="P:CityInfo.API.Models.PointOfInterestDto.Description">
+            <summary>
+            The decsription of the point of interest
+            </summary>
+        </member>
+    </members>
+</doc>

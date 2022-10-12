@@ -10,7 +10,9 @@ using CityInfo.API.Services;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Reflection;
 using System.Text;
 
 Log.Logger = new LoggerConfiguration()
@@ -34,8 +36,39 @@ builder.Services.AddControllers(options =>
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(setup =>
+{
+    var xmlCommentsFile = $"{Assembly.GetEntryAssembly().GetName().Name}.xml"; // Similar to, __dirname in nodejs. Returns "CityInfo.API.xml
+    var xmlCommentFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile); // Combine cwd with filename
+
+    setup.IncludeXmlComments(xmlCommentFullPath); // Don't forget to eneble "Documentation file path" option in Project => Properties
+
+    //Add Authorization option to Swagger UI
+    setup.AddSecurityDefinition("CityInfoApiBearerAuth", new OpenApiSecurityScheme()
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        Description = "Input a valid token to access the API"
+    });
+
+    // Send provided auth token as auth header in a request
+    setup.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        { new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "CityInfoApiBearerAuth"
+                    }
+            }, new List<string>()
+        }
+    });
+});
+
+
 builder.Services.AddSingleton<FileExtensionContentTypeProvider>(); // register file extension content type provider for use in different parts of application
 
 // compiler directives => omit of include peace of code on compile
@@ -49,9 +82,6 @@ builder.Services.AddTransient<IMailService, CloudMailService>();
 
 builder.Services.AddDbContext<CityInfoContext>(dbContextOptions => dbContextOptions.UseSqlite(
     builder.Configuration["ConnectionStrings:CityInfoDBConnectionString"])); // register CityInfo DB context and connect to DB appsettings file
-
-
-
 
 
 //Register Repositories:
@@ -82,8 +112,17 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("MustBeFromVilnius", policy =>
     {
         policy.RequireAuthenticatedUser();
-        policy.RequireClaim("city", new string[] { "Vilnius" });
+        policy.RequireClaim("city", "Vilnius");
     });
+});
+
+//Register and setup API versioning package
+// The version is added in the controller [ApiVersion] attribute, eg. [ApiVersion("1.2")]
+builder.Services.AddApiVersioning(options =>
+{
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0); // set default API version to "1.0"
+    options.ReportApiVersions = true;
 });
 
 var app = builder.Build();
