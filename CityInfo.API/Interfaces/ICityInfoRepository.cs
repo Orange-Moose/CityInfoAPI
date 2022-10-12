@@ -1,4 +1,5 @@
 ﻿using CityInfo.API.Entities;
+using CityInfo.API.Services;
 using System.Collections;
 
 namespace CityInfo.API.Interfaces
@@ -6,6 +7,8 @@ namespace CityInfo.API.Interfaces
     public interface ICityInfoRepository
     {
         Task<IEnumerable<City>> GetCitiesAsync();
+
+        Task<(IEnumerable<City>, PaginationMetadata)> GetCitiesAsync(string? nameFilter, string? searchQuery, int pageNumber, int pageSize);
 
         Task<City?> GetCityAsync(int cityId, bool includePOIs); // return value City is made nullable to avoid throwing
 

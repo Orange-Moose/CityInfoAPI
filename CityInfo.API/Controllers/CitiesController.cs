@@ -3,6 +3,7 @@ using CityInfo.API.Interfaces;
 using CityInfo.API.Models;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CityInfo.API.Controllers
 {
@@ -12,20 +13,34 @@ namespace CityInfo.API.Controllers
     {
         private readonly ICityInfoRepository _cityInfoRepository;
         private readonly IMapper _mapper;   // nuget AutoMapper container
+        const int maxCitiesPageSize = 20;
 
         public CitiesController(ICityInfoRepository cityInfoRepository, IMapper mapper) // Dependency injection using Interface not the implementation
         {
             _cityInfoRepository = cityInfoRepository ?? throw new ArgumentNullException(nameof(cityInfoRepository));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));    
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet]
-        public async Task<IActionResult> GetCities() // Task == promise, ActionResult == res //ActionResult<IEnumerable<CityWithoutPOIsDTO>>
+        public async Task<IActionResult> GetCities([FromQuery] string? nameFilter, [FromQuery] string? searchQuery, int pageNumber = 1, int pageSize = 10) // Task == promise, ActionResult == res //ActionResult<IEnumerable<CityWithoutPOIsDTO>>
         {
-            // results from DB of type Entity
-            var cityEntities = await _cityInfoRepository.GetCitiesAsync();
+            // Do not allow fetching more than "maxCitiesPageSize" pages at once
+            if (pageSize > maxCitiesPageSize) pageSize = maxCitiesPageSize;
+
+            var filterQuery = nameFilter;
+            // Capitalize first letter
+            if (!string.IsNullOrEmpty(nameFilter))
+            {
+                filterQuery = $"{nameFilter.ToCharArray()[0].ToString().ToUpper()}{nameFilter.Substring(1)}";
+            }
+
+            // Deconstruct result into two variables. Results from DB of type Tuple that contains IEnumerable of cities and Metadata object
+            var (cityEntities, paginationMetadata) = await _cityInfoRepository.GetCitiesAsync(filterQuery, searchQuery, pageNumber, pageSize);
+
+            //Set custom header for paginationMetadata
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(paginationMetadata));
 
             // construct result we want to return to client (in this case we omit POI list)
-            var result  = _mapper.Map<IEnumerable<CityWithoutPOIsDTO>>(cityEntities);
+            var result = _mapper.Map<IEnumerable<CityWithoutPOIsDTO>>(cityEntities);
 
             return Ok(result);
         }

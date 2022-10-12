@@ -77,7 +77,7 @@ namespace CityInfo.API.Controllers
             //Perform changes added to the DB context
             await _cityInfoRepository.SaveChangesAsync();
 
-            var createdPOItoReturn = _mapper.Map<Models.PointOfInterestDto>(pointOfInterestToAdd);
+            var createdPOItoReturn = _mapper.Map<PointOfInterestDto>(pointOfInterestToAdd);
 
 
             return CreatedAtRoute(
@@ -100,7 +100,7 @@ namespace CityInfo.API.Controllers
             if (poiEntityToUpdate == null) { return NotFound(); };
 
             // Add changes to the DB context
-            _mapper.Map(reqPointOfInterest, poiEntityToUpdate); // executes a mapping and overwriting values from input source object to existing object
+            _mapper.Map(reqPointOfInterest, poiEntityToUpdate); // executes a mapping and overwriting values from input source object to existing object .Map(new, cur)
 
             // Perform changes added to the DB context
             await _cityInfoRepository.SaveChangesAsync();
@@ -120,7 +120,7 @@ namespace CityInfo.API.Controllers
 
             var poiEntityToPatch = _mapper.Map<PointOfInterestForUpdateDto>(poiEntity);// converts entity to DTO for further modification
 
-            // Validate POI Entity from DB againt pointOfInterest in a req.body
+            // Validate POI Entity from DB againt pointOfInterest in a req.body, t.y. compare two DTOs
             reqPointOfInterest.ApplyTo(poiEntityToPatch, ModelState);
 
 
