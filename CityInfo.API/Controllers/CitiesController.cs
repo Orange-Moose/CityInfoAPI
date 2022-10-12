@@ -2,12 +2,14 @@
 using CityInfo.API.Interfaces;
 using CityInfo.API.Models;
 using CityInfo.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace CityInfo.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/cities")] // default route for this controller
     public class CitiesController : ControllerBase // Asp.NET Core base class for MVC controllers
     {
@@ -21,15 +23,16 @@ namespace CityInfo.API.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet]
-        public async Task<IActionResult> GetCities([FromQuery] string? nameFilter, [FromQuery] string? searchQuery, int pageNumber = 1, int pageSize = 10) // Task == promise, ActionResult == res //ActionResult<IEnumerable<CityWithoutPOIsDTO>>
+        public async Task<IActionResult> GetCities([FromQuery] string? nameFilter, [FromQuery] string? searchQuery, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10) // Task == promise, ActionResult == res //ActionResult<IEnumerable<CityWithoutPOIsDTO>>
         {
             // Do not allow fetching more than "maxCitiesPageSize" pages at once
             if (pageSize > maxCitiesPageSize) pageSize = maxCitiesPageSize;
 
             var filterQuery = nameFilter;
-            // Capitalize first letter
+
             if (!string.IsNullOrEmpty(nameFilter))
             {
+                // Capitalize first letter
                 filterQuery = $"{nameFilter.ToCharArray()[0].ToString().ToUpper()}{nameFilter.Substring(1)}";
             }
 

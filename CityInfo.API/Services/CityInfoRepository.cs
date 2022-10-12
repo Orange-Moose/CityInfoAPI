@@ -35,13 +35,13 @@ namespace CityInfo.API.Services
 
             if (!string.IsNullOrEmpty(nameFilter))
             {
-                // building a query to execute later
+                // building a Filter query
                 collection = collection.Where(x => x.Name == nameFilter.Trim()); 
             }
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                // building a query to execute later
+                // building a Search query
                 collection = collection.Where(x => x.Name.Contains(searchQuery.Trim()) || (x.Description != null && x.Description.Contains(searchQuery.Trim())));
             }
 
@@ -49,6 +49,8 @@ namespace CityInfo.API.Services
             var totalItemCount = await collection.CountAsync();
             var paginationMetadata = new PaginationMetadata(totalItemCount, pageNumber, pageSize);
 
+
+            // Pagination
             // database is not queried until you call .ToListAsync() method = defered execution
             var collectionToReturn =  await collection
                 .OrderBy(x => x.Id)
@@ -108,6 +110,12 @@ namespace CityInfo.API.Services
         public void DeletePointOfInterest(PointOfInterest pointOfInterest)
         {
             db.PointsOfInterest.Remove(pointOfInterest); // remove POI from PointsOfInterest table in DB
+        }
+
+        //Compares if city with that name, has that id
+        public async Task<bool> CityNameMatchesCityId(string? cityName, int cityId)
+        {
+            return await db.Cities.AnyAsync(c => c.Id == cityId && c.Name == cityName);
         }
 
 
