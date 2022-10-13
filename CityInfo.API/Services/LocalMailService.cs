@@ -4,7 +4,7 @@ namespace CityInfo.API.Services
 {
     public class LocalMailService: IMailService
     {
-        private readonly string _mailTo = string.Empty; // setting field to empty string to be sure that values are adde only via constructor
+        private readonly string _mailTo = string.Empty; // setting field to empty string to be sure that values are added only via constructor
         private readonly string _mailFrom = string.Empty;
 
         public LocalMailService(IConfiguration configuration) // injecting mail config from appsettings.json

@@ -17,24 +17,20 @@ namespace CityInfo.API.Controllers
     [ApiVersion("2.0")]
     public class PointsOfInterestController : ControllerBase // Asp.NET Core base class for MVC controllers
     {
-        // Dependency injection (use interfaces, not instances)
+        // Dependency injection (via interfaces)
         private readonly ILogger<PointsOfInterestController> _logger; // built-in .NET dependency
         private readonly IMailService _mailService; // custom dependency
         private readonly ICityInfoRepository _cityInfoRepository; // custom repo dependency 
         private readonly IMapper _mapper; // nuget dependency
         public PointsOfInterestController(ILogger<PointsOfInterestController> logger, IMailService mailService, ICityInfoRepository cityInfoRepository, IMapper mapper)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger)); // default dependency injection via constructor
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger)); // dependency injection via constructor
             _mailService = mailService ?? throw new ArgumentNullException(nameof(mailService));
             _cityInfoRepository = cityInfoRepository ?? throw new ArgumentNullException(nameof(cityInfoRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-
-
-
-
-        [HttpGet] // route template is not necessary as we defined {cityId} variable in a default route for this controller
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<PointOfInterestDto>>> GetPointsOfInterest(int cityId)
         {
             
@@ -104,7 +100,7 @@ namespace CityInfo.API.Controllers
             ); // Returns 201 Created response
         }
 
-        [HttpPut("{poiid}")] // updates all values of the resource. If some value were not provided they are set to default value
+        [HttpPut("{poiid}")] // updates all values of the resource. If some values were not provided they are set to default values
         public async Task<ActionResult> UpdatePointOfInterest(int cityId, int poiId, PointOfInterestForUpdateDto reqPointOfInterest)
         {
             var city = await _cityInfoRepository.GetCityAsync(cityId, false);
@@ -113,12 +109,12 @@ namespace CityInfo.API.Controllers
             if (poiEntityToUpdate == null) { return NotFound(); };
 
             // Add changes to the DB context
-            _mapper.Map(reqPointOfInterest, poiEntityToUpdate); // executes a mapping and overwriting values from input source object to existing object .Map(new, cur)
+            _mapper.Map(reqPointOfInterest, poiEntityToUpdate); // executes mapping and overwriting values from input source object to existing object .Map(new, cur)
 
             // Perform changes added to the DB context
             await _cityInfoRepository.SaveChangesAsync();
 
-            return NoContent(); // returns 204 success status. We could also use 201 with CreatedAtRoute() containting the updated object
+            return NoContent(); // returns 204 success status.
         }
 
         [HttpPatch("{poiId}")]

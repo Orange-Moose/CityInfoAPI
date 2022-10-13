@@ -2,6 +2,7 @@
 
 namespace CityInfo.API
 {
+    //Used for development before using database
     public class CitiesDataStore
     {
         public List<CityDto> Cities { get; set; } // placeholder for dummy data

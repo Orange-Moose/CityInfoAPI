@@ -12,7 +12,7 @@ namespace CityInfo.API.DbContexts
         public CityInfoContext(DbContextOptions<CityInfoContext> options) : base(options) { }
 
 
-        // We use these DbSet properties to query and save instances
+        // USe DbSet properties to query and save instances
         // The LINQ queries against the DbSet properties will be translated into queries against the underlying database
         public DbSet<City> Cities { get; set; } = null!; // null forgiving operator
         public DbSet<PointOfInterest> PointsOfInterest { get; set; } = null!; // null forgiving operator

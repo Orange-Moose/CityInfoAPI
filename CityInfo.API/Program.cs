@@ -1,8 +1,3 @@
-
-
-// LEARN NEXT: https://app.pluralsight.com/library/courses/asp-dot-net-core-6-securing-oauth-2-openid-connect/table-of-contents
-
-
 using CityInfo.API;
 using CityInfo.API.DbContexts;
 using CityInfo.API.Interfaces;
@@ -22,6 +17,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+
 //builder.Logging.ClearProviders();
 //builder.Logging.AddConsole();
 
@@ -35,8 +31,7 @@ builder.Services.AddControllers(options =>
 .AddXmlDataContractSerializerFormatters(); // Allows response in application.xml through Request Headers Accept: application.xml
 
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
+// Configure Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(setup =>
 {
@@ -85,8 +80,8 @@ builder.Services.AddDbContext<CityInfoContext>(dbContextOptions => dbContextOpti
 
 
 //Register Repositories:
-// AddScoped lifetime refference to dependency is created once per request. 
-builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();  //to register the repository we pass the contract (interface) and the implementation (repo). 
+// AddScoped lifetime - reference to dependency is created once per request. 
+builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>(); 
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());// Mount automapper package. /Profiles folder contents used here
 
@@ -128,7 +123,6 @@ builder.Services.AddApiVersioning(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline by calling all the middlewares with "app.Use..."
-
 
 if (app.Environment.IsDevelopment())
 {

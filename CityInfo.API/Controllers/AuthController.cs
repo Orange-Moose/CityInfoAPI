@@ -20,7 +20,6 @@ namespace CityInfo.API.Controllers
             }
 
         // construct req.body object
-        // we won't use it outside of this class, so we scope it to this namespace
         public class AuthRequestBody
         {
             public AuthRequestBody(string username, string password)
@@ -33,7 +32,6 @@ namespace CityInfo.API.Controllers
         }
 
         // construct user entity object
-        // we won't use this class outside of AuthRequestBody class, so we define it inside
         private class CityInfoUser
         {
             public CityInfoUser(int userId, string userName, string firstName, string lastName, string city)
@@ -73,7 +71,7 @@ namespace CityInfo.API.Controllers
 
             // 2. Create a token and sign credentials
             // On production, store keys in a secure environment, like Key Vault
-            //In this case we store secrets in a appsetings.Development.json
+            // In Development mode secrets are stored in a appsetings.Development.json
             var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Authentication:SecretForKey"]));
             var signinCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 

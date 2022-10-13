@@ -11,7 +11,7 @@ namespace CityInfo.API.Controllers
     [ApiController]
     [Authorize]
     [ApiVersion("1.0")]
-    [ApiVersion("2.0")] // you can set multiple versions if needed
+    [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/cities")] // default route for this controller
     public class CitiesController : ControllerBase // Asp.NET Core base class for MVC controllers
     {
@@ -19,7 +19,7 @@ namespace CityInfo.API.Controllers
         private readonly IMapper _mapper;   // nuget AutoMapper container
         const int maxCitiesPageSize = 20;
 
-        public CitiesController(ICityInfoRepository cityInfoRepository, IMapper mapper) // Dependency injection using Interface not the implementation
+        public CitiesController(ICityInfoRepository cityInfoRepository, IMapper mapper) // Dependency injection using Interface
         {
             _cityInfoRepository = cityInfoRepository ?? throw new ArgumentNullException(nameof(cityInfoRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -44,7 +44,7 @@ namespace CityInfo.API.Controllers
             //Set custom header for paginationMetadata
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(paginationMetadata));
 
-            // construct result we want to return to client (in this case we omit POI list)
+            // map return result from Entity to DTO 
             var result = _mapper.Map<IEnumerable<CityWithoutPOIsDTO>>(cityEntities);
 
             return Ok(result);

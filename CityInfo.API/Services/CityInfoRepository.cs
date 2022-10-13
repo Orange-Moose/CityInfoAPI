@@ -10,7 +10,7 @@ namespace CityInfo.API.Services
         private readonly CityInfoContext db; // DB context
         public CityInfoRepository(CityInfoContext dbContext) // injecting DB connection
         {
-            db = dbContext ?? throw new ArgumentNullException(nameof(dbContext)); // this is now points to connected db
+            db = dbContext ?? throw new ArgumentNullException(nameof(dbContext)); // this now points to connected db
         }
 
         public async Task<IEnumerable<City>> GetCitiesAsync()
@@ -28,7 +28,7 @@ namespace CityInfo.API.Services
             // Note: IEnumerable vs IQueryable interface
             // Deferred execution - read more...
             // IEnumerable - filter logic is executed on the client side (in-memory)
-            // IQueriable - filter logic is executed on hte database side using SQL
+            // IQueriable - filter logic is executed on the database side using SQL
 
             //Cast the Cities dbSet to IQueriable<City>
             var collection = db.Cities as IQueryable<City>;
@@ -45,13 +45,12 @@ namespace CityInfo.API.Services
                 collection = collection.Where(x => x.Name.Contains(searchQuery.Trim()) || (x.Description != null && x.Description.Contains(searchQuery.Trim())));
             }
 
-            // CountAsync() is a database method that returns total amount of items in a given collection
             var totalItemCount = await collection.CountAsync();
             var paginationMetadata = new PaginationMetadata(totalItemCount, pageSize, pageNumber);
 
 
             // Pagination
-            // database is not queried until you call .ToListAsync() method = defered execution
+            // database is not queried until you call .ToListAsync() method => defered execution
             var collectionToReturn =  await collection
                 .OrderBy(x => x.Id)
                 .Skip(pageSize * (pageNumber - 1)) // ignores the amount of results, eg. 5 items * (4 -1) pages = 15;
@@ -96,7 +95,7 @@ namespace CityInfo.API.Services
         // Add changes to DB context for saving 
         public async Task AddPOIforCityAsync(int cityId, PointOfInterest pointOfInterest)
         {
-            var city = await GetCityAsync(cityId, false); // we don't need to load POIs as we simply add new one 
+            var city = await GetCityAsync(cityId, false); 
             if (city != null)
             {
                 //this does not save POI to DB yet. The .Add method adds it to the object context but not to the DB
@@ -105,7 +104,6 @@ namespace CityInfo.API.Services
                 city.PointsOfInterest.Add(pointOfInterest);
             }
         }
-
 
         public void DeletePointOfInterest(PointOfInterest pointOfInterest)
         {
